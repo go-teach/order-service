@@ -24,7 +24,7 @@ class OrderIndex(Resource):
         duration = int(request.form['duration'])
         payment_type = request.form['payment_type']
 
-        balance = requests.get('http://go-teach-balance.herokuapp.com/balances/{}'.format(username)).json()
+        balance = requests.get('http://go-teach-balance.herokuapp.com/balances/{}'.format(student)).json()
         total_cost = COST_PER_HOUR*duration
         if balance['amount'] >= total_cost or payment_type == 'cash':
             order = OrderModel(student = student,
